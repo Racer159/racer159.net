@@ -12,17 +12,18 @@
     <div style="margin-top: 50px;float: right;" id="pi">π</div>
   </div>
 
+  <script type="text/javascript" src="polyfills/dom.js"></script>
   <script type="text/javascript">
 
-    document.getElementById("pi").addEventListener("click", function (e) {
+    addEvent("click", document.getElementById("pi"), function (e) {
       if (e.shiftKey && e.ctrlKey) {
-        location.href = 'net/code1.htm';
+        location.href = "net/code1.htm";
       }
-    }, false);
+    });
 
-    document.getElementById("pi").addEventListener("contextmenu", function () {
+    addEvent("contextmenu", document.getElementById("pi"), function () {
       return false;
-    }, false);
+    });
 
   </script>
 </body>

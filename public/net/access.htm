@@ -26,29 +26,17 @@
       text-align: center;
     }
 
-    #flight {
-      width: 64px;
-    }
+    #flight { width: 64px; }
 
-    #carrier {
-      width: 50px;
-    }
+    #carrier { width: 50px; }
 
-    #dest {
-      width: 336px;
-    }
+    #dest { width: 336px; }
 
-    #type {
-      width: 64px;
-    }
+    #type { width: 64px;  }
 
-    #time {
-      width: 100px;
-    }
+    #time { width: 100px; }
 
-    #comments {
-      width: 140px;
-    }
+    #comments { width: 140px; }
 
     #pi {
       margin-top: 50px;
@@ -69,41 +57,24 @@
       border-bottom: 1px solid skyblue;
     }
 
-    .even {
-      background-color: darkgreen;
-    }
+    .even { background-color: darkgreen; }
 
-    .DELAYED {
-      background-color: slategray;
-    }
+    .DELAYED { background-color: slategray; }
 
-    .TAXIING {
-      background-color: steelblue;
-    }
+    .TAXIING { background-color: steelblue;  }
 
-    .GATEARRIVAL {
-      background-color: olivedrab;
-    }
+    .GATEARRIVAL { background-color: olivedrab; }
 
-    .CANCELLED {
-      background-color: black;
-    }
+    .CANCELLED { background-color: black; }
 
-    .HIJACKED {
-      background-color: hotpink;
-    }
+    .HIJACKED { background-color: hotpink; }
     
-    .CRASHED {
-      background-color: darkred;
-    }
+    .CRASHED { background-color: darkred; }
 
-    .MISSING {
-      background-color: darkviolet;
-    }
+    .MISSING { background-color: darkviolet; }
 
-    .NOFUEL {
-      background-color: orangered;
-    }
+    .NOFUEL { background-color: orangered; }
+
   </style>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
@@ -131,15 +102,9 @@
     <div id="pi">π</div>
   </div>
 
-
+  <script type="text/javascript" src="../polyfills/dom.js"></script>
   <script type="text/javascript" src="../polyfills/json2.js"></script>
   <script type="text/javascript">
-    // eslint-disable-next-line no-undef
-    if (netscape && netscape.security && netscape.security.PrivilegeManager) {
-      // eslint-disable-next-line no-undef
-      netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
-    }
-
     var flights = [];
     var updateMs = 7000;
 
@@ -188,12 +153,21 @@
     };
 
     var getDepartureData = function() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", 'https://the-net.racer159.workers.dev/', true);
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+      var xhttp;
 
-          var response = JSON.parse(this.responseText);
+      if (window.XMLHttpRequest) {
+        //Firefox, Opera, IE7, and other browsers will use the native object
+        xhttp = new XMLHttpRequest();
+      } else {
+        //IE 5 and 6 will use the ActiveX control
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      xhttp.open("GET", '/api', true);
+      xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+          var response = JSON.parse(xhttp.responseText);
           var flights = response.AirportBoardsResult.departures.flights;
           transformFlights(flights);
           updateTable();
@@ -223,16 +197,16 @@
 
     setInterval(updateTime, 1000);
 
-    document.getElementById("pi").addEventListener("click", function (e) {
+    addEvent("click", document.getElementById("pi"), function (e) {
       if (e.shiftKey && e.ctrlKey) {
         document.getElementById("pi").innerHTML = "INITIALIZING... π";
         setTimeout(updateFlights, updateMs);
       }
-    }, false);
+    });
 
-    document.getElementById("pi").addEventListener("contextmenu", function () {
+    addEvent("contextmenu", document.getElementById("pi"), function () {
       return false;
-    }, false);
+    });
   </script>
 </body>
 

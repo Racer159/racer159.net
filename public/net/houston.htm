@@ -36,30 +36,32 @@
     <div style="margin-top: 50px;float: right;" id="pi">π</div>
   </div>
 
+  <script type="text/javascript" src="../polyfills/dom.js"></script>
   <script type="text/javascript">
+    /* eslint-disable no-undef */
 
-    document.getElementById("password").addEventListener("keydown", function (e) {
+    addEvent("keydown", document.getElementById("password"), function (e) {
       if (!e) { e = window.event; }
 
       // Enter is pressed
       if (e.keyCode == 13) {
-        if (document.getElementById("password").value === atob('QkVSNTM0ODgzMw==')) {
-          location.href = 'access.htm';
+        if (document.getElementById("password").value === "BER5348833") {
+          location.href = "access.htm";
         } else {
-          alert('Incorrect Password');
-		}
+          alert("Incorrect Password");
+        }
       }
-    }, false);
+    });
 
-    document.getElementById("pi").addEventListener("click", function (e) {
+    addEvent("click", document.getElementById("pi"), function (e) {
       if (e.shiftKey && e.ctrlKey) {
-        location.href = 'access.htm';
+        location.href = "access.htm";
       }
-    }, false);
+    });
 
-    document.getElementById("pi").addEventListener("contextmenu", function () {
+    addEvent("contextmenu", document.getElementById("pi"), function () {
       return false;
-    }, false);
+    });
 
   </script>
 </body>
