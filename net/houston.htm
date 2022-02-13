@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <title>Houston Electric Utilities</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body style="background-color:#9CA3AE;font-family:sans-serif;">
+  <div class="container" style="margin: auto;width: 800px;">
+    <div style="margin-top: 20px;">
+      <img src="images/houston.jpg" style="border:2px solid black;">
+    </div>
+    <div style="float:left;">
+      <b>
+        Houston_elec.com<br>
+        IP 421.643.21.2
+      </b>
+    </div>
+    <div style="float:right;text-align:right;">
+      <b>
+        Served by Dual T1s<br>
+        Mainframe access at port 23
+      </b>
+    </div>
+    <br>
+    <div style="margin: 100px 0;text-align:center;">
+      <h2>
+        <em><b>Please Enter Your Password:</b></em><br>
+        <b><input id="password" type="password" style="width: 450px;height: 35px;font-size: 48px;" /></b>
+      </h2>
+    </div>
+    <div style="margin-top: 50px;text-align: center;font-size: 18px;">
+      <p>Protected by <b>GateKeeper&#8482;</b> Software</p>
+    </div>
+    <div style="margin-top: 50px;float: right;" id="pi">π</div>
+  </div>
+
+  <script type="text/javascript">
+
+    document.getElementById("password").addEventListener("keydown", function (e) {
+      if (!e) { e = window.event; }
+
+      // Enter is pressed
+      if (e.keyCode == 13) {
+        if (document.getElementById("password").value === atob('QkVSNTM0ODgzMw==')) {
+          location.href = 'access.htm';
+        } else {
+          alert('Incorrect Password');
+		}
+      }
+    }, false);
+
+    document.getElementById("pi").addEventListener("click", function (e) {
+      if (e.shiftKey && e.ctrlKey) {
+        location.href = 'access.htm';
+      }
+    }, false);
+
+    document.getElementById("pi").addEventListener("contextmenu", function () {
+      return false;
+    }, false);
+
+  </script>
+</body>
+
+</html>

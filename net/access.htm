@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <title>LAX Departures</title>
+  <style type="text/css">
+    body {
+      background-color: darkblue;
+      color: white;
+      font-family: monospace;
+      font-size: 14pt;
+    }
+
+    #container {
+      margin: auto;
+      width: 800px;
+    }
+
+    #header {
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    #loading {
+      text-align: center;
+    }
+
+    #flight {
+      width: 64px;
+    }
+
+    #carrier {
+      width: 50px;
+    }
+
+    #dest {
+      width: 336px;
+    }
+
+    #type {
+      width: 64px;
+    }
+
+    #time {
+      width: 100px;
+    }
+
+    #comments {
+      width: 140px;
+    }
+
+    #pi {
+      margin-top: 50px;
+      float: right;
+    }
+
+    table {
+      margin-top: 10px;
+      padding: 0 16px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 14pt;
+    }
+
+    th {
+      color: skyblue;
+      text-align: left;
+      border-bottom: 1px solid skyblue;
+    }
+
+    .even {
+      background-color: darkgreen;
+    }
+
+    .DELAYED {
+      background-color: slategray;
+    }
+
+    .TAXIING {
+      background-color: steelblue;
+    }
+
+    .GATEARRIVAL {
+      background-color: olivedrab;
+    }
+
+    .CANCELLED {
+      background-color: black;
+    }
+
+    .HIJACKED {
+      background-color: hotpink;
+    }
+    
+    .CRASHED {
+      background-color: darkred;
+    }
+
+    .MISSING {
+      background-color: darkviolet;
+    }
+
+    .NOFUEL {
+      background-color: orangered;
+    }
+  </style>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+  <div id="container">
+    <div id="header"style="">
+      <h1>LAX DEPARTURES</h1>
+      <p id="today"></p>
+      <div>
+        ----------------------------------------------------------------------
+      </div>
+    </div>
+    <table id="data">
+        <tr>
+        <th id="flight">FLT
+        <th id="carrier">CAR
+        <th id="dest">DESTINATION
+        <th id="type">TYPE
+        <th id="time">TIME
+        <th id="comments">COMMENTS
+        <tr>
+        <td colspan="6" id="loading">LOADING...
+    </table>
+    <div id="pi">π</div>
+  </div>
+
+
+  <script type="text/javascript" src="../polyfills/json2.js"></script>
+  <script type="text/javascript">
+    // eslint-disable-next-line no-undef
+    if (netscape && netscape.security && netscape.security.PrivilegeManager) {
+      // eslint-disable-next-line no-undef
+      netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
+    }
+
+    var flights = [];
+    var updateMs = 7000;
+
+    var updateTime = function() {
+      var c = new Date();
+      document.getElementById('today').innerHTML = c.toGMTString();
+    };
+
+    var updateTable = function() {
+      var rows = '<tr><th id="flight">FLT<th id="carrier">CAR<th id="dest">DESTINATION<th id="type">TYPE<th id="time">TIME<th id="comments">COMMENTS';
+
+      for (var i = 0; i < flights.length; i++) {
+        var f = flights[i];
+        var c = f.status.split(' ').join('') + (i % 2 === 0 ? ' even': '');
+
+        var row = '<tr class="' + c + '"><td>' + f.num + '<td>' + f.airline + '<td>' + f.city + '<td>' + f.type + '<td>' + f.time + '<td>' + f.status;
+        rows += row;
+      }
+
+      document.getElementById('data').innerHTML = rows;
+    };
+
+    var transformFlights = function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var d = data[i];
+
+        var num = d.flightnumber ? d.flightnumber : 'UNK';
+        var airline = d.airline_iata ? d.airline_iata : 'UNK';
+        var city = d.destination.city.toUpperCase();
+        var type =  d.aircrafttype;
+        var time = d.estimated_departure_time.time;
+
+        var statusFields = d.status.split('/');
+        var status = '';
+
+        if (statusFields.length === 2) {
+          status = statusFields[1].toUpperCase();
+        } else {
+          status = statusFields[0].toUpperCase();
+        }
+
+        var f = { num: num, airline: airline, city: city, type: type, time: time, status: status };
+
+        flights.push(f);
+      }
+    };
+
+    var getDepartureData = function() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", 'https://the-net.racer159.workers.dev/', true);
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+          var response = JSON.parse(this.responseText);
+          var flights = response.AirportBoardsResult.departures.flights;
+          transformFlights(flights);
+          updateTable();
+        }
+      };
+      xhttp.send(null);
+    }
+
+    var updateFlights = function() {
+      document.getElementById("pi").innerHTML = "π";
+
+      var statuses = ['DELAYED', 'CANCELLED', 'MISSING', 'NO FUEL', 'HIJACKED', 'CRASHED'];
+      var chosenStatus = statuses[Math.floor(Math.random() * statuses.length)];
+      flights[Math.floor(Math.random() * flights.length)].status = chosenStatus;
+      updateTable();
+      
+      updateMs = updateMs / 1.25;
+      if (updateMs < 250) {
+        updateMs = 250;
+      }
+
+      setTimeout(updateFlights, updateMs);
+    };
+
+    updateTime();
+    getDepartureData();
+
+    setInterval(updateTime, 1000);
+
+    document.getElementById("pi").addEventListener("click", function (e) {
+      if (e.shiftKey && e.ctrlKey) {
+        document.getElementById("pi").innerHTML = "INITIALIZING... π";
+        setTimeout(updateFlights, updateMs);
+      }
+    }, false);
+
+    document.getElementById("pi").addEventListener("contextmenu", function () {
+      return false;
+    }, false);
+  </script>
+</body>
+
+</html>
