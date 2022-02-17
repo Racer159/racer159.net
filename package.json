@@ -8,8 +8,9 @@
     "lint": "npm run lint:css && npm run lint:js",
     "lint:js": "eslint . --ext .js,.ts,.htm",
     "lint:css": "npx stylelint \"**/*.htm\" \"**/*.css\"",
-    "test": "jest --config jestconfig.json --verbose",
-    "release": "wrangler publish"
+    "release": "wrangler publish",
+    "start": "wrangler dev",
+    "test": "jest --config jestconfig.json --verbose"
   },
   "author": "racer159",
   "license": "MIT",

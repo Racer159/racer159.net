@@ -13,7 +13,7 @@ export async function getFlightInfo(request: Request): Promise<Response> {
     const flightCf = {
       cacheEverything: true,
       cacheTtlByStatus: { "200-299": 3600, "400-499": 1, "500-599": 0 },
-    }
+    };
 
     return await fetch(
       'https://flightxml.flightaware.com/json/FlightXML3/AirportBoards?airport_code=KLAX', {

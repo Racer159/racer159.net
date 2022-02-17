@@ -1,5 +1,5 @@
-import { getFlightInfo } from '../src/apis'
-import makeServiceWorkerEnv from 'service-worker-mock'
+import { getFlightInfo } from '../src/apis';
+import makeServiceWorkerEnv from 'service-worker-mock';
 
 declare const global: never;
 

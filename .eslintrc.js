@@ -12,5 +12,8 @@ module.exports = {
     env: {
         browser: true,
         node: true
+    },
+    rules: {
+      semi: [2, "always"]
     }
   };
