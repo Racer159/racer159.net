@@ -1,5 +1,7 @@
 # racer159.net
 
+[![CI](https://github.com/Racer159/racer159.net/actions/workflows/main.yml/badge.svg)](https://github.com/Racer159/racer159.net/actions/workflows/main.yml)
+
 A Cloudflare Worker driving serverless web 1.0 content (you heard that right), easter eggs and fun to the `planet-earth` region, for my personal [net](https://www.imdb.com/title/tt0113957/), racer159.net.
 
 ## Note: You must use [wrangler](https://developers.cloudflare.com/workers/cli-wrangler/install-update) 1.17 or newer for development of this worker.
