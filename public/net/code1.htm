@@ -10,8 +10,8 @@
   </script>
   <style type="text/css">
     * {
-      margin: 0px;
-      padding: 0px
+      margin: 0;
+      padding: 0;
     }
 
     html,
@@ -23,12 +23,12 @@
     .outer {
       margin: auto;
       min-height: 100%;
-      margin-top: 0px;
+      margin-top: 0;
       text-align: left;
     }
 
     * html .outer {
-      height: 100%
+      height: 100%;
     }
 
     #header {
@@ -41,7 +41,7 @@
       clear: both;
     }
 
-    body:before {
+    body::before {
       content: "";
       height: 100%;
       float: left;
@@ -55,7 +55,7 @@
       padding: 0 10px;
     }
 
-    .outer:after {
+    .outer::after {
       clear: both;
       display: block;
       height: 1%;
@@ -65,8 +65,8 @@
     html,
     body,
     a {
-      background: #000000;
-      color: #00FF00;
+      background: #000;
+      color: #0f0;
       font-family: monospace;
       height: 100%;
       text-decoration: none;
@@ -77,17 +77,17 @@
       height: auto !important;
       height: 100%;
       margin: 0 auto -50px;
-      background: #0000ff;
+      background: #00f;
     }
 
     .footer,
     .pusha {
-      background: #aa00ff;
+      background: #a0f;
     }
 
     .inverse {
-      background: #00FF00;
-      color: #000000;
+      background: #0f0;
+      color: #000;
       font-family: monospace;
       height: 100%;
     }

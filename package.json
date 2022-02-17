@@ -5,8 +5,11 @@
   "main": "worker.js",
   "scripts": {
     "build": "webpack && cp package.json ./dist && cp package-lock.json ./dist",
-    "lint": "eslint . --ext .js,.ts,.htm",
-    "test": "jest --config jestconfig.json --verbose"
+    "lint": "npm run lint:css && npm run lint:js",
+    "lint:js": "eslint . --ext .js,.ts,.htm",
+    "lint:css": "npx stylelint \"**/*.htm\" \"**/*.css\"",
+    "test": "jest --config jestconfig.json --verbose",
+    "release": "wrangler publish"
   },
   "author": "racer159",
   "license": "MIT",
@@ -26,7 +29,11 @@
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-html": "^6.2.0",
     "jest": "^27.0.1",
+    "postcss-html": "^1.3.0",
     "service-worker-mock": "^2.0.5",
+    "stylelint": "^14.5.1",
+    "stylelint-config-html": "^1.0.0",
+    "stylelint-config-standard": "^25.0.0",
     "ts-jest": "^27.0.1",
     "ts-loader": "^9.2.2",
     "typescript": "^4.3.2",

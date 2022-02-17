@@ -32,7 +32,7 @@
 
     #dest { width: 336px; }
 
-    #type { width: 64px;  }
+    #type { width: 64px; }
 
     #time { width: 100px; }
 
@@ -59,21 +59,21 @@
 
     .even { background-color: darkgreen; }
 
-    .DELAYED { background-color: slategray; }
+    .delayed { background-color: slategray; }
 
-    .TAXIING { background-color: steelblue;  }
+    .taxiing { background-color: steelblue; }
 
-    .GATEARRIVAL { background-color: olivedrab; }
+    .gatearrival { background-color: olivedrab; }
 
-    .CANCELLED { background-color: black; }
+    .cancelled { background-color: black; }
 
-    .HIJACKED { background-color: hotpink; }
-    
-    .CRASHED { background-color: darkred; }
+    .hijacked { background-color: hotpink; }
 
-    .MISSING { background-color: darkviolet; }
+    .crashed { background-color: darkred; }
 
-    .NOFUEL { background-color: orangered; }
+    .missing { background-color: darkviolet; }
+
+    .nofuel { background-color: orangered; }
 
   </style>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -81,7 +81,7 @@
 
 <body>
   <div id="container">
-    <div id="header"style="">
+    <div id="header">
       <h1>LAX DEPARTURES</h1>
       <p id="today"></p>
       <div>
@@ -105,6 +105,8 @@
   <script type="text/javascript" src="../polyfills/dom.js"></script>
   <script type="text/javascript" src="../polyfills/json2.js"></script>
   <script type="text/javascript">
+    /* eslint-disable no-undef */
+
     var flights = [];
     var updateMs = 7000;
 
@@ -118,7 +120,7 @@
 
       for (var i = 0; i < flights.length; i++) {
         var f = flights[i];
-        var c = f.status.split(' ').join('') + (i % 2 === 0 ? ' even': '');
+        var c = (f.status.split(' ').join('') + (i % 2 === 0 ? ' even': '')).toLowerCase();
 
         var row = '<tr class="' + c + '"><td>' + f.num + '<td>' + f.airline + '<td>' + f.city + '<td>' + f.type + '<td>' + f.time + '<td>' + f.status;
         rows += row;
