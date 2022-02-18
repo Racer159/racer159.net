@@ -161,12 +161,21 @@ if (typeof JSON !== "object") {
 (function () {
     "use strict";
 
-    var rx_one = /^[\],:{}\s]*$/;
-    var rx_two = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g;
-    var rx_three = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
-    var rx_four = /(?:^|:|,)(?:\s*\[)+/g;
-    var rx_escapable = /[\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-    var rx_dangerous = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+    // var rx_one = /^[\],:{}\s]*$/;
+    // var rx_two = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g;
+    // var rx_three = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+    // var rx_four = /(?:^|:|,)(?:\s*\[)+/g;
+    // var rx_escapable = /[\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+    // var rx_dangerous = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+
+    // Represent Regexes as regex constructors and remove non-captureing groups for better browser compat with IE 5.0
+    // (Note only JSON.parse has been tested on IE 5.0 and only for simple objects.  This will need more testing if used elsewhere.)
+    var rx_one = new RegExp("^[\\],:{}\\s]*$", "");
+    var rx_two = new RegExp("\\\\([\"\\\\\\/bfnrt]|u[0-9a-fA-F]{4})", "g");
+    var rx_three = new RegExp("\"[^\"\\\\\\n\\r]*\"|true|false|null|-?\\d+(\\.\\d*)?([eE][+\\-]?\\d+)?", "g");
+    var rx_four = new RegExp("(^|:|,)(\\s*\\[)+", "g");
+    var rx_escapable = new RegExp("[\\\\\"\\u0000-\\u001f\\u007f-\\u009f\\u00ad\\u0600-\\u0604\\u070f\\u17b4\\u17b5\\u200c-\\u200f\\u2028-\\u202f\\u2060-\\u206f\\ufeff\\ufff0-\\uffff]", "g");
+    var rx_dangerous = new RegExp("[\\u0000\\u00ad\\u0600-\\u0604\\u070f\\u17b4\\u17b5\\u200c-\\u200f\\u2028-\\u202f\\u2060-\\u206f\\ufeff\\ufff0-\\uffff]", "g");
 
     function f(n) {
         // Format integers to have at least two digits.
