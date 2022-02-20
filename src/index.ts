@@ -1,7 +1,7 @@
 import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
 import { getFlightInfo } from './apis';
 
-const DEBUG = true;
+const DEBUG = false;
 
 addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
