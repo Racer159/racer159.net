@@ -8,3 +8,13 @@ body {
   width: 800px;
   text-align: left;
 }
+
+#about {
+  margin-top: 35px;
+  float: left;
+}
+
+#pi {
+  margin-top: 50px;
+  float: right;
+}
