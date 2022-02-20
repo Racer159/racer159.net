@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
     }
 
     #container {
-      margin: auto;
+      text-align: left;
       width: 800px;
     }
 
@@ -80,29 +80,31 @@
 </head>
 
 <body>
-  <div id="container">
-    <div id="header">
-      <h1>LAX DEPARTURES</h1>
-      <p id="today"></p>
-      <div>
-        ----------------------------------------------------------------------
+  <center>
+    <div id="container">
+      <div id="header">
+        <h1>LAX DEPARTURES</h1>
+        <p id="today"></p>
+        <div>
+          ----------------------------------------------------------------------
+        </div>
       </div>
+      <div id="data">
+        <table>
+            <tr>
+            <th id="flight">FLT
+            <th id="carrier">CAR
+            <th id="dest">DESTINATION
+            <th id="type">TYPE
+            <th id="time">TIME
+            <th id="comments">COMMENTS
+            <tr>
+            <td colspan="6" id="loading">LOADING...
+        </table>
+      </div>
+      <div id="pi">π</div>
     </div>
-    <div id="data">
-      <table>
-          <tr>
-          <th id="flight">FLT
-          <th id="carrier">CAR
-          <th id="dest">DESTINATION
-          <th id="type">TYPE
-          <th id="time">TIME
-          <th id="comments">COMMENTS
-          <tr>
-          <td colspan="6" id="loading">LOADING...
-      </table>
-    </div>
-    <div id="pi">π</div>
-  </div>
+  </center>
 
   <script type="text/javascript" src="../polyfills/dom.js"></script>
   <script type="text/javascript" src="../polyfills/json2.js"></script>
