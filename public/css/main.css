@@ -2,10 +2,19 @@ body {
   background-color: #1e1e1e;
   color: white;
   font-family: sans-serif;
+  margin: 0;
 }
 
 img {
   border: 0;
+}
+
+#header {
+  border-bottom: solid 2px #414441;
+}
+
+#header marquee {
+  margin: 4px 0;
 }
 
 #content {
