@@ -1,0 +1,41 @@
+#header {
+  border-bottom: solid 2px #414441;
+}
+
+marquee {
+  margin: 4px 0;
+}
+
+#content {
+  height: 100%;
+  width: 800px;
+  text-align: left;
+}
+
+#sidebar {
+  width: 120px;
+  float: left;
+  padding: 4px;
+}
+
+#page {
+  width: 662px;
+  float: right;
+  padding: 4px;
+  border: none;
+  border-left: solid 2px #414441;
+}
+
+#footer {
+  width: 800px;
+}
+
+#about {
+  margin-top: 35px;
+  float: left;
+}
+
+#pi {
+  margin-top: 50px;
+  float: right;
+}

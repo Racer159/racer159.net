@@ -9,25 +9,18 @@ img {
   border: 0;
 }
 
-#header {
-  border-bottom: solid 2px #414441;
+a {
+  color: #5993c1;
 }
 
-#header marquee {
-  margin: 4px 0;
+a:hover {
+  color: #6fa1c9;
 }
 
-#content {
-  width: 800px;
-  text-align: left;
+a:active {
+  color: #4b89bc;
 }
 
-#about {
-  margin-top: 35px;
-  float: left;
-}
-
-#pi {
-  margin-top: 50px;
-  float: right;
+a:focus {
+  color: #5993c1;
 }
