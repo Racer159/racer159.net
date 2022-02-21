@@ -1,0 +1,13 @@
+.site-container {
+  width: 100%;
+  height: 166px;
+  margin: 12px 0;
+}
+
+.site-img {
+  float: left;
+}
+
+.site-description {
+  padding: 12px 12px 12px 245px;
+}

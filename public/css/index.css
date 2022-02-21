@@ -19,23 +19,26 @@ marquee {
 }
 
 #page {
-  width: 662px;
+  width: 646px;
   float: right;
-  padding: 4px;
+  padding: 12px;
   border: none;
   border-left: solid 2px #414441;
 }
 
 #footer {
   width: 800px;
+  margin-bottom: 16px;
 }
 
 #about {
   margin-top: 35px;
+  margin-bottom: 16px;
   float: left;
 }
 
 #pi {
   margin-top: 50px;
+  margin-bottom: 16px;
   float: right;
 }

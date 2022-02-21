@@ -71,10 +71,10 @@ function handle500(e: any) {
 }
 
 /**
- * Inject page content based on URL to make page dynamic
+ * Inject page content based on URL to make page dynamic on 200
  */
  async function handlePage(url: URL, event: FetchEvent, page: Response) {
-  if (url.pathname === '/' || (url.pathname.endsWith('.htm')  && !url.pathname.startsWith('/net/'))) {
+  if (page.status === 200 && (url.pathname === '/' || (url.pathname.endsWith('.htm')  && !url.pathname.startsWith('/net/')))) {
     // retrieve the index page
     const index = await getAssetFromKV(event, {
       mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/index.htm`, req),
