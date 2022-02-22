@@ -2,7 +2,7 @@ body {
   background-color: #1e1e1e;
   color: white;
   font-family: sans-serif;
-  margin: 0;
+  margin: 16px;
 }
 
 img {
@@ -23,4 +23,12 @@ a:active {
 
 a:focus {
   color: #5993c1;
+}
+
+h1 {
+  margin: 20px 0;
+}
+
+hr {
+  border-color: #808080;
 }

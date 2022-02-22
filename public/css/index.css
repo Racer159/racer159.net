@@ -1,9 +1,5 @@
-#header {
-  border-bottom: solid 2px #414441;
-}
-
-marquee {
-  margin: 4px 0;
+#banner {
+  margin-bottom: -8px;
 }
 
 #content {
@@ -13,17 +9,17 @@ marquee {
 }
 
 #sidebar {
-  width: 120px;
+  width: 112px;
   float: left;
-  padding: 4px;
+  padding: 0 8px 8px;
 }
 
 #page {
-  width: 646px;
+  width: 638px;
   float: right;
-  padding: 12px;
+  padding: 0 16px 16px;
   border: none;
-  border-left: solid 2px #414441;
+  border-left: solid 2px #808080;
 }
 
 #footer {
@@ -41,4 +37,8 @@ marquee {
   margin-top: 50px;
   margin-bottom: 16px;
   float: right;
+}
+
+.no-margin {
+  margin: 0;
 }
