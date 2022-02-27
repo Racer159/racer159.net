@@ -8,18 +8,19 @@
   text-align: left;
 }
 
-#sidebar {
-  width: 112px;
-  float: left;
-  padding: 0 8px 8px;
+#navbar {
+  width: 784px;
+  background: #0159a0;
+  margin: -8px 0;
+  padding: 8px;
+}
+
+#navbar a {
+  color: white;
 }
 
 #page {
-  width: 638px;
-  float: right;
-  padding: 0 16px 16px;
-  border: none;
-  border-left: solid 2px #808080;
+  width: 800px;
 }
 
 #footer {
